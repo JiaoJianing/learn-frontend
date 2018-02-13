@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSS图片</title>
+	<style>
+		#myImg{
+			border-radius: 5px;
+			cursor: pointer;
+			transition: 0.3s;
+		}
+		
+		#myImg:hover {opacity: 0.7;}
+		
+		/*背景窗口*/
+		.modal{
+			display:none; /*默认隐藏*/
+			position: fixed;/*位置固定*/
+			z-index: 1;/*保持在最外层*/
+			padding-top: 100px;/*定位*/
+			left: 0;
+			top: 0;
+			width: 100%;/*full width*/
+			height: 100%;/*full height*/
+			overflow: auto;/*如果需要 显示滚动条*/
+			background-color: rgb(0,0,0);/*备选颜色*/
+			background-color: rgba(0,0,0,.9);/*黑色半透明*/
+		}
+		
+		/*窗口内容(image)*/
+		.modal-content{
+			margin: auto;
+			display: block;
+			width: 80%;
+			max-width: 700px;
+		}
+		
+		/*图片窗口的标题*/
+		#caption{
+			margin: auto;
+			display: block;
+			width: 80%;
+			max-width: 700px;
+			text-align: center;
+			color: #ccc;
+			padding: 10px 0;
+			height: 150px;
+		}
+		
+		/*添加动画*/
+		.modal-content, #caption{
+			-webkit-animation-name: zoom;
+			-webkit-animation-duration:0.6s;
+			animation-name: zoom;
+			animation-duration: 0.6s;
+		}
+		
+		@-webkit-keyframes zoom{
+			from {-webkit-transform: scale(0.1)}
+			to {-webkit-transform: scale(1)}
+		}
+		
+		@keyframes zoom{
+			from {transform: scale(0.1)}
+			to {transform: scale(1)}
+		}
+		
+		/*关闭按钮*/
+		.close{
+			position: absolute;
+			top: 15px;
+			right: 35px;
+			color: #f1f1f1;
+			font-size: 40px;
+			font-weight: bold;
+			transition: 0.3s;
+		}
+		
+		.close:hover,
+		.close:focus{
+			color: #bbb;
+			text-decoration: none;
+			cursor: pointer;
+		}
+		
+		/*在较小的屏幕上保持图片100%宽度*/
+		@media only screen and (max-width: 700px){
+			.modal-content{
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<img id="myImg" src="img_lights.jpg" alt="Northern Lights, Norway" width="300" height="200"/>
+	
+	<div id="myModal" class="modal">
+		<span class="close">x</span>
+		<img class="modal-content" id="img01">
+		<div id="caption"></div>
+	</div>
+	
+	<script>
+		//获取模态窗口
+		var modal = document.getElementById('myModal');
+		
+		//获取图片模态框，alt属性作为图片文本描述
+		var img = document.getElementById('myImg');
+		var modalImg = document.getElementById('img01');
+		var captionText = document.getElementById('caption');
+		img.onclick = function(){
+			modal.style.display = "block";
+			modalImg.src = this.src;
+			modalImg.alt = this.alt;
+			captionText.innerHTML = this.alt;
+		}
+		
+		//获取<span>元素，设置关闭模态框按钮
+		var span = document.getElementsByClassName('close')[0];
+		
+		//点击<span>元素上的(x) 关闭模态框
+		span.onclick = function(){
+			modal.style.display = "none";
+		}
+	</script>
+</body>
+</html>
