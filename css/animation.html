@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSS动画</title>
+	<style>
+		body{
+			margin: 50px;
+		}
+		
+		div{
+			width: 80px;
+			height: 60px;
+			text-align: center;
+			padding: 10px;
+			background: #92B901;
+			color: white;
+			font-size:15px;
+			font-weight:bold;
+			position: relative;
+			animation: cssanim 5s;
+			-webkit-animation: cssanim 5s;/*Safari Chrome*/
+		}
+		
+		@keyframes cssanim{
+			0% {background: #92B901; left: 0px;}
+			25% {background:#0FF; transform: rotate(30deg); left: 0px;}
+			50% {left: 500px; transform: rotate(0deg);}
+			65% {left: 500px; transform: rotate(0deg);}
+			100% {left: 0px; transform: rotate(-360deg);}
+		}
+		@-webkit-keyframes cssanim{/*Safari Chrome*/
+			0% {background: #92B901; left: 0px;}
+			25% {background:#0FF; -webkit-transform: rotate(30deg); left: 0px;}
+			50% {left: 500px; -webkit-transform: rotate(0deg);}
+			65% {left: 500px; -webkit-transform: rotate(0deg);}
+			100% {left: 0px; -webkit-transform: rotate(-360deg);}
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p>CSS3<br/>动画</p>
+	</div>
+</body>
+</html>
