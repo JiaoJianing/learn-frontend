@@ -23,7 +23,15 @@ eventEmitter.on('data_received', function(){
 	}
 })
 
+eventEmitter.on('error', function(err){
+	console.log(err);
+});
+
 //触发connection事件
 eventEmitter.emit('connection');
+
+//console.log(eventEmitter.listeners('connection'));
+
+eventEmitter.emit('error', "test error");
 
 console.log('程序执行完毕。');
